@@ -24,6 +24,34 @@ interface MatchResult {
     winMethod: WinMethod;
 }
 
+function shuffleNoConsecutive(matches: Match[]): Match[] {
+    // Fisher-Yates shuffle
+    const arr = [...matches];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+
+    // Greedy pass: if consecutive matches share a fighter, swap with the
+    // earliest later match that doesn't conflict with the previous match
+    for (let i = 1; i < arr.length; i++) {
+        const prev = arr[i - 1];
+        const sharesFighter = (m: Match) =>
+            m.red === prev.red || m.red === prev.blue ||
+            m.blue === prev.red || m.blue === prev.blue;
+
+        if (sharesFighter(arr[i])) {
+            const swapIdx = arr.findIndex((m, idx) => idx > i && !sharesFighter(m));
+            if (swapIdx !== -1) {
+                [arr[i], arr[swapIdx]] = [arr[swapIdx], arr[i]];
+            }
+            // if no valid swap exists (unavoidable conflict), leave it in place
+        }
+    }
+
+    return arr;
+}
+
 function generateRoundRobin(bracketId: string, fighters: string[]): Match[] {
     const matches: Match[] = [];
     for (let i = 0; i < fighters.length; i++) {
@@ -35,7 +63,7 @@ function generateRoundRobin(bracketId: string, fighters: string[]): Match[] {
             });
         }
     }
-    return matches;
+    return shuffleNoConsecutive(matches);
 }
 
 function parseJSON(text: string): Bracket[] {
