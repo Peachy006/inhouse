@@ -1,0 +1,34 @@
+{
+  "brackets": [
+    {
+      "id": "b1",
+      "name": "MEN / BLACK / ADULT (18+) / -70 KG",
+      "fighters": [
+        "SEAN PETTAS",
+        "SEAN DIONISIOS",
+        "JOHN SMITH",
+        "MIKE JOHNSON",
+        "ALEX BROWN"
+      ]
+    },
+    {
+      "id": "b2",
+      "name": "MEN / BLACK / ADULT (18+) / -100.5 KG (SUPER HEAVY)",
+      "fighters": [
+        "ALEX RODRIGUEZ",
+        "CHRIS MARTIN",
+        "DAVID LEE",
+        "JAMES WILSON"
+      ]
+    },
+    {
+      "id": "b3",
+      "name": "MEN / BROWN / ADULT (18+) / -82.3 KG",
+      "fighters": [
+        "MARK DAVIS",
+        "PAUL GARCIA",
+        "LUKE MARTINEZ"
+      ]
+    }
+  ]
+}
