@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "docker build -t inhouse . && docker run -p 3001:3000 -v $(pwd)/src:/app/src inhouse",
+    "dev:local": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
